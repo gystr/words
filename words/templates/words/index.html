@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- <link rel="stylesheet" href="css/index.css"> -->
+  <title>סלנגז</title>
+</head>
+<body>
+  <div class="container">
+  <header class="header">
+    <form method="get" action="#">
+    <input type="text" name="search_bar" id="main_search" placeholder="חפש מילה...">
+    </form>
+  </header>
+
+  <section class="random-table">
+    <h3>מילים פופולריות:</h3>
+    {% if word_list %}
+        <ul>
+        {% for word in word_list %}
+            <li><a href="/words/{{ word.word_name }}/">{{ word.word_name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No Words are available.</p>
+    {% endif %}
+  </section>
+  <div class="word_of_the_day">
+    <H3>מילת היום:</H3>
+    <div class="box">
+      <h3 class="word">מילה</h3>
+      <p class="def">המילה הזאת אומרת ככה וככה ובלה בלה בלה.</p>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3 class="word">מילה</h3>
+    <p class="def">המילה הזאת אומרת ככה וככה ובלה בלה בלה.</p>
+  </div>
+  <div class="box">
+    <h3 class="word">מילה</h3>
+    <p class="def">המילה הזאת אומרת ככה וככה ובלה בלה בלה.</p>
+  </div>
+  <div class="box">
+    <h3 class="word">מילה</h3>
+    <p class="def">המילה הזאת אומרת ככה וככה ובלה בלה בלה.</p>
+  </div>
+  <footer>  <ul> <li><a>צרו קשר</a></li>  <li><a>אודותינו</a></li>   <li><a>עובדה מעניינת</a></li>  <li><a>מילה רנדומלית</a></li>
+    </ul> </footer>
+  </div>
+
+
+</body>
+</html>
