@@ -5,15 +5,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'words/style.css' %}">
   <!-- <link rel="stylesheet" href="css/index.css"> -->
   <title>סלנגז</title>
 </head>
 <body>
   <div class="container">
   <header class="header">
-    <form method="get" action="#">
-    <input type="text" name="search_bar" id="main_search" placeholder="חפש מילה...">
-    </form>
+    <form action="/words/" method="post">{% csrf_token %}
+    <input name="query" type="text" name="your_name" placeholder="search for a word">
+    <input type="submit" value="OK">
+</form>
   </header>
 
   <section class="random-table">
