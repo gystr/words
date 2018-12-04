@@ -7,12 +7,12 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'words/style.css' %}">
-  <!-- <link rel="stylesheet" href="css/index.css"> -->
   <title>סלנגז</title>
 </head>
 <body>
-  <div class="container">
-  <header class="header">
+
+
+  <header >
     <form action="/words/" method="post">{% csrf_token %}
     <input name="query" type="text" name="your_name" placeholder="search for a word">
     <input type="submit" value="OK">
@@ -31,6 +31,7 @@
         <p>No Words are available.</p>
     {% endif %}
   </section>
+
   <div class="word_of_the_day">
     <H3>מילת היום:</H3>
     <div class="box">
@@ -51,10 +52,8 @@
     <h3 class="word">מילה</h3>
     <p class="def">המילה הזאת אומרת ככה וככה ובלה בלה בלה.</p>
   </div>
-  <footer>  <ul> <li><a>צרו קשר</a></li>  <li><a>אודותינו</a></li>   <li><a>עובדה מעניינת</a></li>  <li><a href="/random/">מילה רנדומלית</a></li>
+  <footer>  <ul> <li><a>צרו קשר</a></li>  <li><a>אודותינו</a></li>  <li><a href="/random/">מילה רנדומלית</a></li>
     </ul> </footer>
-  </div>
-
 
 </body>
 </html>
