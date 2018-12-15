@@ -8,5 +8,4 @@ urlpatterns = [
     path('random/',views.get_random,name="random"),
     path('words/<str:word_name>/', views.detail, name='words-detail'),
     path('words/add/<str:word_name>', views.add_word, name="words-add_word_details"),
-    # path('add/',views.add,name="words-add_action"),
 ]
