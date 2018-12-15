@@ -13,7 +13,8 @@
 
 
   <header class="">
-    <form action="/words/" method="post">{% csrf_token %}
+    <form action="/words/" method="post">
+    {% csrf_token %}
     <input name="query" type="text" name="your_name" placeholder="search for a word">
     <input type="submit" value="OK">
 </form>

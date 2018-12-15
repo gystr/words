@@ -1,0 +1,9 @@
+<h1>נראה שאתה מנסה להוסיף מילה חדשה..</h1>
+<h2>{{ word_name }}</h2>
+<form action="/add/" method="post">{% csrf_token %}
+  הגדרת המילה:<br>
+  <input type="text" name="word_def"><br>
+  דוגמא למילה:<br>
+  <input type="text" name="lastname">
+  <input type="submit" value="הוסף!">
+</form>
