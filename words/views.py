@@ -1,9 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.http import HttpResponse, Http404
-from django.template import loader
 from .models import Word
 from .forms import WordForm
-from django.shortcuts import redirect, reverse
+from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 from django.utils import timezone
 from django.db.models import Max
@@ -21,7 +20,10 @@ def index(request):
 def detail(request,word_name):
     try: #Try to find the word that was provided in the URl
         word = Word.objects.filter(word_name=word_name).first()
-        return render(request, 'words/detail.html', {'word': word})
+        if word == None:
+            return HttpResponseRedirect('/words/add/'+ str(word_name))
+        else:
+            return render(request, 'words/detail.html', {'word': word})
     except Word.DoesNotExist:#Except error and redirect to /words/add/+query
         return HttpResponseRedirect('/words/add/'+ str(word_name))
     except AttributeError:# If another error occurs Return404 ¯\_(ツ)_/¯
