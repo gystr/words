@@ -20,11 +20,7 @@ def index(request):
 def detail(request,word_name):
     try: #Try to find the word that was provided in the URl
         words = Word.objects.filter(word_name=word_name)
-<<<<<<< HEAD
         if not words: #if the word_set in None redirect to add_word
-=======
-        if words == None: #if the word_set in None redirect to add_word
->>>>>>> b0b6424334e310e446de015062dff50f753443ca
             return HttpResponseRedirect('/words/add/'+ str(word_name))
         else:
             return render(request, 'words/detail.html', {'words': words})
