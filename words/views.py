@@ -5,6 +5,7 @@ from .forms import WordForm
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 from django.utils import timezone
+from django.contrib import messages
 from django.db.models import Max
 import random
 # Create your views here.
@@ -14,8 +15,9 @@ def index(request):
          search_query = request.POST.get('query', None) # Get query from form
          return HttpResponseRedirect('/words/'+ str(search_query)) # Return redirect to .detail
     else: # Else display regular index page
-        word_list = Word.objects.all()
-        return render(request, 'words/index.html',{'word_list': word_list})
+        word_list = Word.objects.all()[:10]
+        other_words = Word.objects.order_by('-upvotes')[:5]
+        return render(request, 'words/index.html',{'word_list': word_list,'other_words' : other_words})
 
 def detail(request,word_name):
     try: #Try to find the word that was provided in the URl
@@ -47,6 +49,7 @@ def add_word(request,word_name):
 
             w = Word(word_name=name,word_def=defi,word_example=exmp,pub_date=timezone.now())
             w.save()
+            messages.info(request, 'word has been added to Database!')
             return HttpResponseRedirect('/')
     else:
         form = WordForm()

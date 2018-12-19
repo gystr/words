@@ -21,14 +21,17 @@ ul {
   justify-content: center;
   align-items: center;
   width: 100%;
+
 }
 .mainForm {
   width: 50%;
-  height: 4em;
+  height: 60px;
+  font-size: 30px;
 }
 
 #subbut {
   height: 4em;
+
 }
 .boxes {
   display: flex;
