@@ -19,11 +19,11 @@ def index(request):
 
 def detail(request,word_name):
     try: #Try to find the word that was provided in the URl
-        word = Word.objects.filter(word_name=word_name).first()
-        if word == None:
+        words = Word.objects.filter(word_name=word_name)
+        if words == None: #if the word_set in None redirect to add_word
             return HttpResponseRedirect('/words/add/'+ str(word_name))
         else:
-            return render(request, 'words/detail.html', {'word': word})
+            return render(request, 'words/detail.html', {'words': words})
     except Word.DoesNotExist:#Except error and redirect to /words/add/+query
         return HttpResponseRedirect('/words/add/'+ str(word_name))
     except AttributeError:# If another error occurs Return404 ¯\_(ツ)_/¯
