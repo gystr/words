@@ -10,6 +10,8 @@ from django.db.models import Max
 import random
 # Create your views here.
 
+
+
 def index(request):
     if request.method == 'POST': # If the form is submitted with POST
          search_query = request.POST.get('query', None) # Get query from form
@@ -18,6 +20,13 @@ def index(request):
         word_list = Word.objects.all()[:10]
         other_words = Word.objects.order_by('-upvotes')[:5]
         return render(request, 'words/index.html',{'word_list': word_list,'other_words' : other_words})
+
+
+
+
+
+
+
 
 def detail(request,word_name):
     try: #Try to find the word that was provided in the URl
@@ -31,6 +40,10 @@ def detail(request,word_name):
     except AttributeError:# If another error occurs Return404 ¯\_(ツ)_/¯
         return Http404("An Error Has Occured At Detail Page!")
 
+
+
+
+
 def get_random(request):
         max_id = Word.objects.all().aggregate(max_id=Max("id"))['max_id']
         while True:
@@ -38,6 +51,12 @@ def get_random(request):
             category = Word.objects.filter(pk=pk).first()
             if category:
                 return HttpResponseRedirect('/words/'+ str(category.word_name))
+
+
+
+
+
+
 
 def add_word(request,word_name):
     if request.method == 'POST':
@@ -54,3 +73,11 @@ def add_word(request,word_name):
     else:
         form = WordForm()
     return render(request, 'words/addWord.html',{'word_name': word_name,'form': form})
+
+
+def about(request):
+    return render(request, 'words/about.html')
+
+
+def contact(request):
+    return render(request, 'words/contact.html')
