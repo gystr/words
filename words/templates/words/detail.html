@@ -22,8 +22,11 @@
 {% for word in words %}
 <div class="box">
     <h1>{{ word.word_name }}</h1>
+    <p>הגדרה:</p>
     <li>{{ word.word_def }}</li>
+    <p>דוגמא:</p>
     <li>{{ word.word_example }}</li>
+    <p>תאריך פרסום:</p>
     <li>{{ word.pub_date }}</li>
     <li>{{ word.upvotes }}</li>
     <li>{{ word.downvotes }}</li>
