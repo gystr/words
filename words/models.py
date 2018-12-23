@@ -10,7 +10,7 @@ class Word(models.Model):
     word_def = models.CharField(max_length=200)
     word_example = models.CharField(max_length=200,default=None)
     pub_date = models.DateTimeField('date published')
-    # word_tag = models.CharField(max_length=100,default=None)
+    word_tag = models.CharField(max_length=100,default=None,null=True)
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
 
