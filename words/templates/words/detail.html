@@ -27,18 +27,18 @@
     <p>דוגמא:</p>
     <li>{{ word.word_example }}</li>
     <p>תאריך פרסום:</p>
-    <li>{{ word.pub_date }}</li>
+    <li>{{ word.pub_date|date:'d/m/y' }}</li>
     <li>{{ word.upvotes }}</li>
     <li>{{ word.downvotes }}</li>
     <li>
       {% for tag in word.word_tag.all %}
-        <a href="/tag/{{tag}}"> #{{ tag }} </a>
+        <a href="/tag/{{tag}}"> #{{ tag.tag_name }} </a>
       {% endfor %}
      </li>
 </div>
 {% endfor %}
 
-<footer>  <ul> <li><a>צרו קשר</a></li>  <li><a>אודותינו</a></li>  <li><a href="/random/">מילה רנדומלית</a></li>
+<footer>  <ul> <li><a href="/contact/">צרו קשר</a></li>  <li><a href="/about/">אודותינו</a></li>  <li><a href="/random/">מילה רנדומלית</a></li>
   </ul> </footer>
 </body>
 </html

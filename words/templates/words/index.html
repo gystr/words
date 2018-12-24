@@ -42,6 +42,7 @@
     <p class="def">{{word.word_def}}</p>
     <p class="votes">{{word.upvotes}}</p>
     <p class="votes">{{word.downvotes}}</p>
+    <li>{{ word.pub_date|date:'d/m/y' }}</li>
   </div>
   {% endfor %}
   </div>

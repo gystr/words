@@ -65,6 +65,7 @@ def add_word(request,word_name):
             name = form.cleaned_data['word_name']
             defi = form.cleaned_data['word_def']
             exmp = form.cleaned_data['word_example']
+            tags = form.cleaned_data['word_tags']
 
             w = Word(word_name=name,word_def=defi,word_example=exmp,pub_date=timezone.now())
             w.save()
