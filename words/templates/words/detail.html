@@ -30,6 +30,11 @@
     <li>{{ word.pub_date }}</li>
     <li>{{ word.upvotes }}</li>
     <li>{{ word.downvotes }}</li>
+    <li>
+      {% for tag in word.word_tag.all %}
+        <a href="/tag/{{tag}}"> #{{ tag }} </a>
+      {% endfor %}
+     </li>
 </div>
 {% endfor %}
 

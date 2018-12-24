@@ -75,6 +75,9 @@ def add_word(request,word_name):
     return render(request, 'words/addWord.html',{'word_name': word_name,'form': form})
 
 
+def tag_page(request,Tag):
+    return render(request, 'words/tag.html',{'Tag': Tag})
+
 def about(request):
     return render(request, 'words/about.html')
 

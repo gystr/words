@@ -10,4 +10,5 @@ urlpatterns = [
     path('words/add/<str:word_name>', views.add_word, name="words-add_word_details"),# add word page
     path('about/',views.about,name="about-page"),
     path('contact/',views.contact,name="contact"),
+    path('tag/<str:Tag>',views.tag_page,name="tag-detail-page"),
 ]
