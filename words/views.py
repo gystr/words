@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
-from .models import Word
+from .models import Word, Tag
 from .forms import WordForm
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
@@ -76,8 +76,10 @@ def add_word(request,word_name):
     return render(request, 'words/addWord.html',{'word_name': word_name,'form': form})
 
 
-def tag_page(request,Tag):
-    return render(request, 'words/tag.html',{'Tag': Tag})
+def tag_page(request,str_Tag):
+    t = Tag.objects.get(tag_slug=str(str_Tag))
+    tagged_words = Word.objects.filter(word_tag=t)
+    return render(request, 'words/tag.html',{'t': t,'tagged_words':tagged_words})
 
 def about(request):
     return render(request, 'words/about.html')
