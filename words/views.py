@@ -77,7 +77,7 @@ def add_word(request,word_name):
 
 
 def tag_page(request,str_Tag):
-    t = Tag.objects.get(tag_slug=str(str_Tag))
+    t = Tag.objects.get(tag_name=str(str_Tag))
     tagged_words = Word.objects.filter(word_tag=t)
     return render(request, 'words/tag.html',{'t': t,'tagged_words':tagged_words})
 

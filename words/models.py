@@ -14,8 +14,10 @@ class Tag(models.Model):
 
 
     def __str__(self):
-        return "{}".format(self.tag_slug)
+        return "{}".format(self.tag_name)
 
+    def __repr__(self):
+        return "{}".format(self.tag_slug)
 
 class Word(models.Model):
     word_name = models.CharField(max_length=144)
