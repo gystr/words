@@ -1,13 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404
 from .models import Word, Tag
-from .forms import WordForm
+from .forms import WordForm, ContactForm
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect
 from django.utils import timezone
 from django.contrib import messages
 from django.db.models import Max
 import random
+from django.core.mail import send_mail, BadHeaderError
 # Create your views here.
 
 
@@ -86,4 +87,19 @@ def about(request):
 
 
 def contact(request):
-    return render(request, 'words/contact.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            _from = form.cleaned_data['from_email']
+            _subject = form.cleaned_data['subject']
+            _message = form.cleaned_data['message']
+
+            try:
+                send_mail(_subject, _message, _from, ['sternshos@gmail.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+                
+            return redirect('/')
+    else:
+        form = ContactForm()
+    return render(request, 'words/contact.html',{'form': form})

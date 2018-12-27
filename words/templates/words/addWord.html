@@ -4,16 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'words/style.css' %}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+
   <title>הוספת מילה</title>
 </head>
 <body style="direction: rtl;">
-  <h1>נראה שאתה מנסה להוסיף מילה חדשה..</h1>
+  <header class="header">
+    <form action="/words/" method="post">
+    {% csrf_token %}
+    <input class="mainForm" name="query" type="text" name="your_name" placeholder="חפש בסלנגז">
+    <button type="submit" id="subbut">
+                  <i class="fas fa-search"></i>
+    </button>
+  </form>
+  <div class="logo-container">
+    <a href="/words/"><img id="logo" src="{% static 'words/logo.png' %}" alt="logo"></a>
+  </div>
+  </header>
+  <h1>המילה הזאת לא קיימת אצלנו..</h1>
+  <a href="/words/"><h2>המשך לגלוש באתר?</h2></a>
+  <hr>
+  <h1>הגדר את המילה!</h1>
   <h2>{{ word_name }}</h2>
   <form action="/words/add/{{word_name}}" method="post">
       {% csrf_token %}
-      {{ form }}
+      {{ form.as_p }}
       <input type="submit" value="Submit">
   </form>
-
+  <footer>  <ul> <li><a href="/contact/">צרו קשר</a></li>  <li><a href="/about/">אודותינו</a></li>  <li><a href="/random/">מילה רנדומלית</a></li>
+    </ul> </footer>
 </body>
 </html>
