@@ -1,34 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'words/style.css' %}">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+{% extends "words/base.html" %}
 
-  <title>Document</title>
-</head>
-<body>
-  <header class="header">
-    <form action="/words/" method="post">
-    {% csrf_token %}
-    <input class="mainForm" name="query" type="text" name="your_name" placeholder="חפש בסלנגז">
-    <button type="submit" id="subbut">
-                  <i class="fas fa-search"></i>
-    </button>
-  </form>
-  <div class="logo-container">
-    <a href="/words/"><img id="logo" src="{% static 'words/logo.png' %}" alt="logo"></a>
-  </div>
-  </header>
-  THIS IS THE ABOUT PAGE!
+{% block content %}
+<h3 style="text-align: center;">about about about</h3>
+<p style="text-align: center; margin: auto; width: 400px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius fugit tenetur quae cum maiores aliquid! At repellendus quas, odit ipsam deserunt ullam hic nam porro earum vero? Deleniti velit
+  id, autem voluptatibus amet quia, sit omnis numquam explicabo libero deserunt ad quidem eos aliquid sequi officiis dolor culpa illum nostrum, provident possimus. Quibusdam id officiis numquam harum necessitatibus repellendus in rem ea, quaerat
+  asperiores dolor sit eum quisquam fugiat, rerum architecto exercitationem sed deserunt dolorem temporibus quam delectus sapiente at facere atque. Nam pariatur, ipsam sapiente officia sunt quo incidunt tempora reiciendis aliquid illo eveniet, quis
+  quas suscipit temporibus dolorum quasi ad esse facere deleniti nihil nostrum. Odio magnam, a maiores, vero eligendi id ad consectetur ullam at numquam illo. Similique earum voluptates totam molestiae mollitia saepe quasi excepturi? Vitae maxime
+  dolores quod pariatur. Cupiditate totam at esse optio itaque est eveniet autem beatae harum laudantium magni debitis hic aliquam et, ratione neque provident veniam. Doloremque nihil quam, voluptates voluptas assumenda, id soluta laboriosam
+  quibusdam, provident cum ipsa, voluptatibus obcaecati. Porro suscipit vel maxime at, doloribus autem libero. Dolorum repellat cumque fugiat reprehenderit, ipsam ipsa quas expedita dolore nobis delectus rerum quaerat amet earum pariatur aliquid
+  suscipit, architecto excepturi tempore.
+</p>
 
 
-  <footer>  <ul> <li><a href="/contact/">צרו קשר</a></li>  <li><a href="/about/">אודותינו</a></li>  <li><a href="/random/">מילה רנדומלית</a></li>
-    </ul>
-   </footer>
-</body>
-</html>
+{% endblock content %}

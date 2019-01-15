@@ -1,33 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  {% load static %}
-  <link rel="stylesheet" type="text/css" href="{% static 'words/style.css' %}">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-  <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-  <title>סלנגז</title>
-</head>
-<body style="direction: rtl;">
+{% extends "words/base.html" %}
 
+{% block content %}
 
-<header class="header">
-  <form action="/words/" method="post">
-  {% csrf_token %}
-  <input class="mainForm" name="query" type="text" name="your_name" placeholder="חפש בסלנגז">
-  <button type="submit" id="subbut">
-                <i class="fas fa-search"></i>
-  </button>
-</form>
-<div class="logo-container">
-  <a href="/words/"><img id="logo" src="{% static 'words/logo.png' %}" alt="logo"></a>
-</div>
-</header>
 
  <div class="flex-container">
    <div class="row">
+    <div class="flex-item">
+      <h3 id = "popTagsTitle" style="text-align: center;">טאגים פופולארים:</h3>
+      <div  >
+      <ul id="popularTags">
+       {% for tag in pop_tags %}
+       <a href="/tag/{{tag.tag_name}}"><li>#{{tag.tag_name}}</li></a>
+       {% endfor %}
+       </ul>
+     </div>
+    </div>
      {% for word in other_words %}
      <div class="flex-item">
        <a class="wordA" href="/words/{{word.word_name}}/"><h3 class="word">{{word.word_name}}</h3></a>
@@ -46,8 +33,5 @@
  </div>
 </div>
 
-<footer>  <ul> <li><a href="/contact/">צרו קשר</a></li>  <li><a href="/about/">אודותינו</a></li>  <li><a href="/random/">מילה רנדומלית</a></li>
-  </ul>
- </footer>
-</body>
-</html>
+
+{% endblock content %}
