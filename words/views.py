@@ -18,9 +18,9 @@ def index(request):
          search_query = request.POST.get('query', None) # Get query from form
          return HttpResponseRedirect('/words/'+ str(search_query)) # Return redirect to .detail
     else: # Else display regular index page
-        word_list = Word.objects.all()[:10]
-        other_words = Word.objects.order_by('-upvotes')[:5]
-        return render(request, 'words/index.html',{'word_list': word_list,'other_words' : other_words})
+        pop_tags = Tag.objects.all()[:32]
+        other_words = Word.objects.order_by('-upvotes')[:20]
+        return render(request, 'words/index.html',{'other_words' : other_words,'pop_tags' : pop_tags})
 
 
 
@@ -31,7 +31,7 @@ def index(request):
 
 def detail(request,word_name):
     try: #Try to find the word that was provided in the URl
-        words = Word.objects.filter(word_name=word_name)
+        words = Word.objects.filter(word_name=word_name).order_by('-upvotes')
         if not words: #if the word_set in None redirect to add_word
             return HttpResponseRedirect('/words/add/'+ str(word_name))
         else:
@@ -98,7 +98,7 @@ def contact(request):
                 send_mail(_subject, _message, _from, ['sternshos@gmail.com'])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
-                
+
             return redirect('/')
     else:
         form = ContactForm()

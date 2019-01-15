@@ -1,6 +1,6 @@
 html, body {
     height: 100%;
-    background-color: #DADADA;
+    background-color: #f4f4f4;
     margin: 0;
     font-family: 'Varela Round',helvetica, sans-serif;
     direction: rtl;
@@ -15,6 +15,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: white;
     /* display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -52,6 +53,7 @@ a {
 
 
 .header form {
+  font-family: 'Varela Round',helvetica, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -60,6 +62,7 @@ a {
 
 }
 .mainForm {
+  font-family: 'Varela Round',helvetica, sans-serif;
   width: 50%;
   height: 60px;
   font-size: 30px;
@@ -136,6 +139,25 @@ footer li a{
 
 .wordA {
   color:white ;
+}
+
+#popularTags {
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+#popTagsTitle {
+  font-size: 2em;
+}
+
+ul a {
+  color: #1919FF;
+}
+
+ul a:hover {
+  color: #f4f4f4;
 }
 @media only screen and (max-width: 600px) {
   #logo {

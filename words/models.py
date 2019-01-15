@@ -8,9 +8,10 @@ from django.utils import timezone
 
 
 class Tag(models.Model):
-    tag_name = models.CharField(max_length=144)
+    tag_name = models.CharField(max_length=144,unique=True)
     tag_slug = models.CharField(max_length=144)
     tag_pub_date  = models.DateTimeField(auto_now_add=True)
+    is_main = models.BooleanField(default=False,name="is_main_field",null=False)
 
 
     def __str__(self):
