@@ -1,0 +1,24 @@
+{% extends "words/base.html" %}
+
+{% block content %}
+
+
+<h1 style="text-align: center;">רשימת הטאגים:</h1>
+
+<div class="flex-container">
+<div class="flex-item">
+
+{% for letter in all_letters %}
+  <h4>{{letter}}</h4>
+  {% for tag in all_tags %}
+      {% if letter == tag.tag_name|make_list|first %}
+      <p><a href="/tag/{{tag.tag_name}}">#{{tag.tag_name}}</a></p>
+      {% endif %}
+  {% endfor %}
+{% endfor %}
+
+</div>
+</div>
+
+
+{% endblock content %}

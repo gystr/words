@@ -26,15 +26,15 @@
     </div>
     <form action="/words/" method="post">
       {% csrf_token %}
-      <input class="mainForm" name="query" type="text" name="your_name" placeholder="חפש בסלנגז">
+      <input class="mainForm" name="query" type="text" name="your_name" placeholder="חפש בסלנגז...">
       <button type="submit" id="subbut">
         <i class="fas fa-search"></i>
       </button>
     </form>
     <nav class="navbar">
       <ul>
-        <li><a href="/contact/">רשימת טאגים</a></li>
-        <li><a href="/about/">אודותינו</a></li>
+        <li><a href="/tagList/">רשימת טאגים</a></li>
+        <li><a href="/add/">הוסף הגדרה</a></li>
         <li><a href="/random/">מילה רנדומלית</a></li>
       </ul>
     </nav>
@@ -46,9 +46,10 @@
   <footer>
     <ul>
       <li><a href="/contact/">צרו קשר</a></li>
-      <li><a href="/about/">אודותינו</a></li>
       <li><a href="/random/">מילה רנדומלית</a></li>
+      <li><a href="/about/">אודות</a></li>
     </ul>
+
   </footer>
 </body>
 

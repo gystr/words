@@ -55,7 +55,7 @@ def get_random(request):
 
 
 
-def add_word(request,word_name):
+def add_word(request,word_name="מלא את הטופס:"):
     if request.method == 'POST':
         form = WordForm(request.POST)
         if form.is_valid():
@@ -66,6 +66,19 @@ def add_word(request,word_name):
 
             w = Word(word_name=name,word_def=defi,word_example=exmp,pub_date=timezone.now())
             w.save()
+            tag_list = str(tags).split(",")
+            if not tag_list:
+                pass
+            else:
+                for str_t in tag_list:
+                    try:
+                        t = Tag.objects.get(tag_name=str(str_t))
+                        w.word_tag.add(t)
+                    except:
+                        t = Tag(tag_name=str(str_t),tag_slug=str("tagSlug"))
+                        t.save()
+                        w.word_tag.add(t)
+
             messages.info(request, 'word has been added to Database!')
             return HttpResponseRedirect('/')
     else:
@@ -78,8 +91,16 @@ def tag_page(request,str_Tag):
     tagged_words = Word.objects.filter(word_tag=t)
     return render(request, 'words/tag.html',{'t': t,'tagged_words':tagged_words})
 
+
+def all_tags(request):
+    all_tags = Tag.objects.all().order_by('tag_name')
+    all_letters = ["א","ב","ג","ד","ה","ו","ז","ח","ט","י","כ","ל","מ","נ","ס","ע","פ","צ","ק","ר","ש","ת"]
+    return render(request,'words/allTags.html',{'all_tags' : all_tags,"all_letters": all_letters})
+
 def about(request):
     return render(request, 'words/about.html')
+
+
 
 
 def contact(request):
