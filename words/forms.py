@@ -12,6 +12,11 @@ class WordForm(forms.Form):
 
 
 class ContactForm(forms.Form):
-    from_email = forms.EmailField(required=True,widget=forms.TextInput(attrs={'class' : 'myfieldclass'}))
-    subject = forms.CharField(required=True,widget=forms.TextInput(attrs={'class' : 'myfieldclass'}))
-    message = forms.CharField(widget=forms.Textarea(attrs={'class' : 'myfieldclass'}), required=True)
+    from_email = forms.EmailField(label='מייל',
+    required=True,widget=forms.TextInput(attrs={'class' : 'myfieldclass'}))
+
+    subject = forms.CharField(label='נושא',
+    required=True,widget=forms.TextInput(attrs={'class' : 'myfieldclass'}))
+
+    message = forms.CharField(label='תוכן',
+    widget=forms.Textarea(attrs={'class' : 'myfieldclass'}), required=True)

@@ -46,16 +46,12 @@ def detail(request,word_name):
 
 
 def get_random(request):
-        max_id = Word.objects.all().aggregate(max_id=Max("id"))['max_id']
+        max_id = Word.objects.all().aggregate(max_id=Max("id"))['max_id'] #max amount of words
         while True:
-            pk = random.randint(1, max_id)
-            category = Word.objects.filter(pk=pk).first()
-            if category:
+            pk = random.randint(1, max_id) # random number between 1 and max amount of words
+            category = Word.objects.filter(pk=pk).first() # get words of assosicated with pk
+            if category: # if word is valid send url
                 return HttpResponseRedirect('/words/'+ str(category.word_name))
-
-
-
-
 
 
 
@@ -95,7 +91,7 @@ def contact(request):
             _message = form.cleaned_data['message']
 
             try:
-                send_mail(_subject, _message, _from, ['sternshos@gmail.com'])
+                msg = send_mail(_subject, _message, _from, ['sternshos@gmail.com'],fail_silently=False)
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
 

@@ -3,34 +3,38 @@
 {% block content %}
 
 
- <div class="flex-container">
-   <div class="row">
+<div class="flex-container">
+  <div class="row">
     <div class="flex-item">
-      <h3 id = "popTagsTitle" style="text-align: center;">טאגים פופולארים:</h3>
-      <div  >
-      <ul id="popularTags">
-       {% for tag in pop_tags %}
-       <a href="/tag/{{tag.tag_name}}"><li>#{{tag.tag_name}}</li></a>
-       {% endfor %}
-       </ul>
-     </div>
+      <h3 id="popTagsTitle" style="text-align: center;">טאגים פופולארים:</h3>
+      <div>
+        <ul id="popularTags">
+          {% for tag in pop_tags %}
+          <a href="/tag/{{tag.tag_name}}">
+            <li>#{{tag.tag_name}}</li>
+          </a>
+          {% endfor %}
+        </ul>
+      </div>
     </div>
-     {% for word in other_words %}
-     <div class="flex-item">
-       <a class="wordA" href="/words/{{word.word_name}}/"><h3 class="word">{{word.word_name}}</h3></a>
-       <p class="def">{{word.word_def}}</p>
-       <p class="example">{{word.word_example}}</p>
-       <li class="date" >{{ word.pub_date|date:'d/m/y' }}</li>
-       <ul class="tag-list">
-         {% for tag in word.word_tag.all %}
-           <li class="tag"><a href="/tag/{{tag}}"> #{{ tag.tag_name }} </a></li>
-         {% endfor %}
-       </ul>
-       <button class="upvotes">{{word.upvotes}}</button>
-       <button class="downvotes">{{word.downvotes}}</button>
-     </div>
-     {% endfor %}
- </div>
+    {% for word in other_words %}
+    <div class="flex-item">
+      <a class="wordA" href="/words/{{word.word_name}}/">
+        <h3 class="word">{{word.word_name}}</h3>
+      </a>
+      <p class="def">{{word.word_def}}</p>
+      <p class="example">{{word.word_example}}</p>
+      <li class="date">{{ word.pub_date|date:'d/m/y' }}</li>
+      <ul class="tag-list">
+        {% for tag in word.word_tag.all %}
+        <li class="tag"><a href="/tag/{{tag}}"> #{{ tag.tag_name }} </a></li>
+        {% endfor %}
+      </ul>
+      <button class="upvotes">{{word.upvotes}}</button>
+      <button class="downvotes">{{word.downvotes}}</button>
+    </div>
+    {% endfor %}
+  </div>
 </div>
 
 

@@ -4,9 +4,9 @@
 <div style="text-align: center;">
   <h3>עמוד יצירת קשר!</h3>
   <form action="/contact/" method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <input type="submit" value="Submit">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
   </form>
 </div>
 {% endblock content %}

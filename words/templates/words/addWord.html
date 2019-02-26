@@ -1,11 +1,7 @@
 {% extends "words/base.html" %}
 
 {% block content %}
-<<<<<<< HEAD
 <div style="text-align: center;">
-=======
-  <div style="text-align: center;">
->>>>>>> 3f6e37e5f2c3c531d57a4741b62f8b7454415bd6
   <h1>המילה הזאת לא קיימת אצלנו..</h1>
   <a href="/words/">
     <h2>המשך לגלוש באתר?</h2>
@@ -16,14 +12,8 @@
   <form action="/words/add/{{word_name}}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Submit">
+    <input type="submit" value="שלח!">
   </form>
-<<<<<<< HEAD
 </div>
 
 {% endblock content %}
-=======
-  </div>
-
-  {% endblock content %}
->>>>>>> 3f6e37e5f2c3c531d57a4741b62f8b7454415bd6

@@ -4,23 +4,23 @@
 
 <h1 style="text-align: center;">טאג: #{{t.tag_name}}</h1>
 <div class="flex-container">
-<div class="row">
-{% for word in tagged_words %}
-<div class="flex-item">
-  <h3 class="word">{{word.word_name}}</h3>
-  <p class="def">{{word.word_def}}</p>
-  <p class="example">{{word.word_example}}</p>
-  <li class="date" >{{ word.pub_date|date:'d/m/y' }}</li>
-  <ul class="tag-list">
-    {% for tag in word.word_tag.all %}
-      <li class="tag"><a href="/tag/{{tag}}"> #{{ tag.tag_name }} </a></li>
+  <div class="row">
+    {% for word in tagged_words %}
+    <div class="flex-item">
+      <h3 class="word">{{word.word_name}}</h3>
+      <p class="def">{{word.word_def}}</p>
+      <p class="example">{{word.word_example}}</p>
+      <li class="date">{{ word.pub_date|date:'d/m/y' }}</li>
+      <ul class="tag-list">
+        {% for tag in word.word_tag.all %}
+        <li class="tag"><a href="/tag/{{tag}}"> #{{ tag.tag_name }} </a></li>
+        {% endfor %}
+      </ul>
+      <button class="upvotes">{{word.upvotes}}</button>
+      <button class="downvotes">{{word.downvotes}}</button>
+    </div>
     {% endfor %}
-  </ul>
-  <button class="upvotes">{{word.upvotes}}</button>
-  <button class="downvotes">{{word.downvotes}}</button>
-</div>
-{% endfor %}
-</div>
+  </div>
 </div>
 
 {% endblock content %}
