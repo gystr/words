@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 
 urlpatterns = [
@@ -13,4 +13,8 @@ urlpatterns = [
     path('contact/',views.contact,name="contact"), #contact page
     path('tag/<str:str_Tag>',views.tag_page,name="tag-detail-page"), #Tag page for words of a certain tag
     path('tagList/', views.all_tags, name="all-tags-page"), #page where all tags are displayed
+    path('signup/', views.signup, name="signup"), #page where all tags are displayed
+    # repath('activate/<str:uidb64>/<str:token>',views.activate, name='activate'),
+    re_path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        views.activate, name='activate'),
 ]
