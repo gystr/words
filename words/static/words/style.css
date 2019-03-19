@@ -17,10 +17,6 @@ a {
     align-items: center;
     justify-content: center;
     background-color: white;
-    /* display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex; */
 }
 
 .row {
@@ -39,7 +35,7 @@ a {
     background-color: olive;
     padding: 5px;
     margin: 10px;
-    min-width: 300px;
+    width: 300px;
     max-width: 400px;
     min-height: 300px;
     color: white;

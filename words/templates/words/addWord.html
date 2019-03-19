@@ -2,11 +2,10 @@
 
 {% block content %}
 <div style="text-align: center;">
-  <h1>המילה הזאת לא קיימת אצלנו?</h1>
-  <a href="/words/">
-    <h2>המשך לגלוש באתר?</h2>
-  </a>
-  <hr>
+
+  {% if user.is_authenticated %}
+
+
   <h1>הגדר את המילה!</h1>
   <h2>{{ word_name }}</h2>
   <form action="/words/add/{{word_name}}" method="post">
@@ -14,6 +13,13 @@
     {{ form.as_p }}
     <input type="submit" value="שלח!">
   </form>
+
+  {% else %}
+  <h1>מילה לא קיימת? רוצים להגדיר?</h1>
+  <h2>הירשם לאתר כדי להגדיר ולהצביע על מילים</h2>
+  <h3><a href="/users/signup/">הירשם עכשיו!</a></h3>
+  <h3><a href="/users/login/">אם יש לך כבר חשבון התחבר!</a></h3>
+  {% endif %}
 </div>
 
 {% endblock content %}

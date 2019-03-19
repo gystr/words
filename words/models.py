@@ -1,7 +1,7 @@
 from django.db import models
 import datetime
 from django.utils import timezone
-
+from django.contrib.auth.models import User
 
 
 
@@ -21,6 +21,7 @@ class Tag(models.Model):
         return "{}".format(self.tag_slug)
 
 class Word(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     word_name = models.CharField(max_length=144)
     word_def = models.CharField(max_length=200)
     word_example = models.CharField(max_length=200,default=None)

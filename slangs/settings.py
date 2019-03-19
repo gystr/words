@@ -20,6 +20,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'words.apps.WordsConfig',
+    'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -115,3 +116,6 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'slangs.website@gmail.com'
 EMAIL_HOST_PASSWORD = 'iloveeden12'
 EMAIL_PORT = 587
+
+
+LOGIN_REDIRECT_URL = 'words-index'

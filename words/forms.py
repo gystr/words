@@ -3,6 +3,8 @@ from .models import Word
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+User._meta.get_field('email')._unique = True
+
 class WordForm(forms.Form):
     word_name = forms.CharField(label='מילה', max_length=100)
     word_def = forms.CharField(label="הגדרה",max_length=200,widget=forms.Textarea)
@@ -22,11 +24,3 @@ class ContactForm(forms.Form):
 
     message = forms.CharField(label='תוכן',
     widget=forms.Textarea(attrs={'class' : 'myfieldclass'}), required=True)
-
-
-
-class SignupForm(UserCreationForm):
-    email = forms.EmailField(max_length=200, help_text='Required')
-    class Meta:
-        model = User
-        fields = ('username', 'email', 'password1', 'password2')

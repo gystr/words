@@ -46,8 +46,13 @@
   <footer>
     <ul>
       <li><a href="/contact/">צרו קשר</a></li>
-      <li><a href="/random/">מילה רנדומלית</a></li>
       <li><a href="/about/">אודות</a></li>
+      {% if user.is_authenticated %}
+      <li><a href="/users/logout/">התנתק</a></li>
+      {% else %}
+      <li><a href="/users/signup/">הירשם</a></li>
+      <li><a href="/users/login/">התחבר</a></li>
+      {% endif %}
     </ul>
 
   </footer>
