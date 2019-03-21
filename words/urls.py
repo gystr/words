@@ -13,4 +13,5 @@ urlpatterns = [
     path('contact/',views.contact,name="contact"), #contact page
     path('tag/<str:str_Tag>',views.tag_page,name="tag-detail-page"), #Tag page for words of a certain tag
     path('tagList/', views.all_tags, name="all-tags-page"), #page where all tags are displayed
+    # path('words/votes/<str:slug>/<str:direction>/',views.vote, name="vote"),
 ]

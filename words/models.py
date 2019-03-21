@@ -26,10 +26,9 @@ class Word(models.Model):
     word_def = models.CharField(max_length=200)
     word_example = models.CharField(max_length=200,default=None)
     pub_date = models.DateTimeField('date published')
-    upvotes = models.IntegerField(default=0)
-    downvotes = models.IntegerField(default=0)
     word_tag = models.ManyToManyField(Tag)
-
+    num_vote_up = models.IntegerField(default=0)
+    num_vote_down = models.IntegerField(default=0)
 
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)

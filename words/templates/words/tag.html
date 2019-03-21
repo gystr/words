@@ -7,7 +7,9 @@
   <div class="row">
     {% for word in tagged_words %}
     <div class="flex-item">
-      <h3 class="word">{{word.word_name}}</h3>
+      <a class="wordA" href="/words/{{word.word_name}}/">
+        <h3 class="word">{{word.word_name}}</h3>
+      </a>
       <p class="def">{{word.word_def}}</p>
       <p class="example">{{word.word_example}}</p>
       <li class="date">{{ word.pub_date|date:'d/m/y' }}</li>
@@ -16,8 +18,8 @@
         <li class="tag"><a href="/tag/{{tag}}"> #{{ tag.tag_name }} </a></li>
         {% endfor %}
       </ul>
-      <button class="upvotes">{{word.upvotes}}</button>
-      <button class="downvotes">{{word.downvotes}}</button>
+      <button class="upvotes" onclick="vote('{{ word.pk }}', 'up', this);">{{word.num_vote_up}}</button>
+      <button class="downvotes" onclick="vote('{{ word.pk }}', 'down', this);">{{word.num_vote_down}}</button>
     </div>
     {% endfor %}
   </div>

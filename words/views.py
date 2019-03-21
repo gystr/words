@@ -7,13 +7,9 @@ from django.http import HttpResponseRedirect
 from django.utils import timezone
 from django.contrib import messages
 from django.db.models import Max
-import random
 from django.core.mail import send_mail, BadHeaderError
-# Create your views here.
-
-
-
-
+import random
+import json
 
 
 
@@ -23,7 +19,7 @@ def index(request):
          return HttpResponseRedirect('/words/'+ str(search_query)) # Return redirect to .detail
     else: # Else display regular index page
         pop_tags = Tag.objects.all()[:32]
-        other_words = Word.objects.order_by('-upvotes')[:20]
+        other_words = Word.objects.order_by('-num_vote_up')[:12]
         return render(request, 'words/index.html',{'other_words' : other_words,'pop_tags' : pop_tags})
 
 
@@ -35,7 +31,7 @@ def index(request):
 
 def detail(request,word_name):
     try: #Try to find the word that was provided in the URl
-        words = Word.objects.filter(word_name=word_name).order_by('-upvotes')
+        words = Word.objects.filter(word_name=word_name).order_by('-num_vote_up')
         if not words: #if the word_set in None redirect to add_word
             return HttpResponseRedirect('/words/add/'+ str(word_name))
         else:
@@ -124,3 +120,28 @@ def contact(request):
     else:
         form = ContactForm()
     return render(request, 'words/contact.html',{'form': form})
+
+# 
+# def vote(request,slug,direction):
+#     if request.method == 'POST' and request.user.is_authenticated:
+#         w = Word.objects.get(pk=slug)
+#         user_id = request.user.pk
+#         if direction == "upvote":
+#             if not w.votes.exists(user_id):
+#                 w.num_vote_up += 1
+#                 w.save()
+#             result = {
+#                 'votes': w.num_vote_up,
+#                 'success': True
+#                     }
+#         elif direction == "downvote":
+#             if not w.votes.exists(user_id):
+#                 w.num_vote_down += 1
+#                 w.save()
+#             result = {
+#                 'votes': w.num_vote_down,
+#                 'success': True
+#                     }
+#         else:
+#             pass
+#     return HttpResponse(json.dumps(result), content_type="application/json")

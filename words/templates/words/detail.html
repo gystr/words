@@ -16,8 +16,8 @@
         <li class="tag"><a href="/tag/{{tag}}"> #{{ tag.tag_name }} </a></li>
         {% endfor %}
       </ul>
-      <button class="upvotes">{{word.upvotes}}</button>
-      <button class="downvotes">{{word.downvotes}}</button>
+      <button class="upvotes" onclick="vote('{{ word.pk }}', 'up', this);">{{word.num_vote_up}}</button>
+      <button class="downvotes" onclick="vote('{{ word.pk }}', 'down', this);">{{word.num_vote_down}}</button>
     </div>
     {% endfor %}
   </div>
