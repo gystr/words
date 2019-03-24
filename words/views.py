@@ -121,27 +121,27 @@ def contact(request):
         form = ContactForm()
     return render(request, 'words/contact.html',{'form': form})
 
-# 
-# def vote(request,slug,direction):
-#     if request.method == 'POST' and request.user.is_authenticated:
-#         w = Word.objects.get(pk=slug)
-#         user_id = request.user.pk
-#         if direction == "upvote":
-#             if not w.votes.exists(user_id):
-#                 w.num_vote_up += 1
-#                 w.save()
-#             result = {
-#                 'votes': w.num_vote_up,
-#                 'success': True
-#                     }
-#         elif direction == "downvote":
-#             if not w.votes.exists(user_id):
-#                 w.num_vote_down += 1
-#                 w.save()
-#             result = {
-#                 'votes': w.num_vote_down,
-#                 'success': True
-#                     }
-#         else:
-#             pass
-#     return HttpResponse(json.dumps(result), content_type="application/json")
+
+def vote(request,slug,direction):
+    result = None
+    if request.method == 'POST' and request.user.is_authenticated:
+        w = Word.objects.get(pk=slug)
+        user_id = request.user.pk
+
+        if w.voted_by_this_user(user_id) == False:
+            if direction == "upvote":
+                w.num_vote_up += 1
+            else:
+                w.num_vote_down += 1
+            w.upvoted_by += str(f"{user_id},")
+            w.save()
+            result = {
+                'success': True
+                    }
+
+    if request.method == 'POST' and not request.user.is_authenticated:
+        result = {
+            'success': False,
+            'message' : "You have to be a signed user to vote!"
+                }
+    return HttpResponse(json.dumps(result), content_type="application/json")

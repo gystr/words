@@ -69,11 +69,11 @@ function vote(slug, direction,element){
               $(element).text(data.votes);
         }
         else {
-            alert("error in function");
+            console.log("no vote");
               }
         },
         error: function() {
-                alert("error due to request");
+                console.log("error due to request");
             }
 
     });

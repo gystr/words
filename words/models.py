@@ -29,9 +29,21 @@ class Word(models.Model):
     word_tag = models.ManyToManyField(Tag)
     num_vote_up = models.IntegerField(default=0)
     num_vote_down = models.IntegerField(default=0)
+    upvoted_by = models.CharField(max_length=1000,default="0,")
 
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
     def __str__(self):
         return "{} - {}".format(self.word_name,self.word_def)
+
+    def voted_by_this_user(self,user_pk):
+        print(user_pk)
+        if self.upvoted_by == "":
+            return False
+        x = self.upvoted_by.split(",")
+        x_set = set(x)
+        if str(user_pk) in x_set:
+            return True
+        else:
+            return False
