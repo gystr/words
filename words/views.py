@@ -8,6 +8,7 @@ from django.utils import timezone
 from django.contrib import messages
 from django.db.models import Max
 from django.core.mail import send_mail, BadHeaderError
+from django.core.paginator import Paginator
 import random
 import json
 
@@ -19,7 +20,7 @@ def index(request):
          return HttpResponseRedirect('/words/'+ str(search_query)) # Return redirect to .detail
     else: # Else display regular index page
         pop_tags = Tag.objects.all()[:32]
-        other_words = Word.objects.order_by('-num_vote_up')[:12]
+        other_words = Word.objects.order_by('-num_vote_up')[:9]
         return render(request, 'words/index.html',{'other_words' : other_words,'pop_tags' : pop_tags})
 
 
@@ -35,7 +36,10 @@ def detail(request,word_name):
         if not words: #if the word_set in None redirect to add_word
             return HttpResponseRedirect('/words/add/'+ str(word_name))
         else:
-            return render(request, 'words/detail.html', {'words': words})
+            paginator = Paginator(words, 4)
+            page = request.GET.get('page')
+            contacts = paginator.get_page(page)
+            return render(request, 'words/detail.html', {'words': contacts})
     except Word.DoesNotExist:#Except error and redirect to /words/add/+query
         return HttpResponseRedirect('/words/add/'+ str(word_name))
     except AttributeError:# If another error occurs Return404 ¯\_(ツ)_/¯
@@ -89,7 +93,10 @@ def add_word(request,word_name="מלא את הטופס:"):
 def tag_page(request,str_Tag):
     t = Tag.objects.get(tag_name=str(str_Tag))
     tagged_words = Word.objects.filter(word_tag=t)
-    return render(request, 'words/tag.html',{'t': t,'tagged_words':tagged_words})
+    paginator = Paginator(tagged_words, 6)
+    page = request.GET.get('page')
+    contacts = paginator.get_page(page)
+    return render(request, 'words/tag.html',{'t': t,'tagged_words':contacts})
 
 
 def all_tags(request):

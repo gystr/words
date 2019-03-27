@@ -21,6 +21,22 @@
     </div>
     {% endfor %}
   </div>
+
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if words.has_previous %}
+            <a href="?page={{ words.previous_page_number }}">הקודם</a>
+        {% endif %}
+
+        <span class="current">
+            עמוד {{ words.number }} מתוך {{ words.paginator.num_pages }}.
+        </span>
+
+        {% if words.has_next %}
+            <a href="?page={{ words.next_page_number }}">הבא</a>
+        {% endif %}
+    </span>
 </div>
 
 {% endblock content %}

@@ -38,7 +38,6 @@ class Word(models.Model):
         return "{} - {}".format(self.word_name,self.word_def)
 
     def voted_by_this_user(self,user_pk):
-        print(user_pk)
         if self.upvoted_by == "":
             return False
         x = self.upvoted_by.split(",")
