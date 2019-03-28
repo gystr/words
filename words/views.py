@@ -60,18 +60,20 @@ def get_random(request):
 
 
 def add_word(request,word_name="מלא את הטופס:"):
-    if request.method == 'POST' and request.user.is_authenticated:
+    if request.method == 'POST' and request.user.is_authenticated:  # If the form is submitted with POST and the request is by an auth user
         form = WordForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() and request.user.profile.can_publish(): #If the form is valid and the function can publish returns True save form data
             name = form.cleaned_data['word_name']
             defi = form.cleaned_data['word_def']
             exmp = form.cleaned_data['word_example']
             tags = form.cleaned_data['word_tags']
             cur_user = request.user
             w = Word(author=cur_user,word_name=name,word_def=defi,word_example=exmp,pub_date=timezone.now())
-            w.save()
-            tag_list = str(tags).split(",")
-            if not tag_list:
+            w.save() # save word
+            cur_user.profile.published_words.add(w) # add word to the user's published words
+            w.save() # save again for some reason
+            tag_list = str(tags).split(",") # get tags from form
+            if not tag_list: # if tag list is empty pass NOT WORKING!!!
                 pass
             else:
                 for str_t in tag_list:
