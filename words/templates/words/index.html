@@ -2,10 +2,9 @@
 
 {% block content %}
 
-<div class="flex-container">
-  <div class="row">
-    <div class="flex-item">
-      <h3 id="popTagsTitle" style="text-align: center;">טאגים פופולארים:</h3>
+<div class="wrapper">
+  <div class="popular-tags-box">
+    <h3 id="popTagsTitle" style="text-align: center;">טאגים פופולארים:</h3>
       <div>
         <ul id="popularTags">
           {% for tag in pop_tags %}
@@ -15,18 +14,20 @@
           {% endfor %}
         </ul>
       </div>
-    </div>
+  </div>
+
+    <div class="Word-Wrapper">
     {% for word in other_words %}
-    <div class="flex-item">
-      <a class="wordA" href="/words/{{word.word_name}}/">
-        <h3 class="word">{{word.word_name}}</h3>
+    <div class="Word-box">
+      <a class="Word-title-a" href="/words/{{word.word_name}}/">
+        <h3 class="Word-title">{{word.word_name}}</h3>
       </a>
-      <p class="def">{{word.word_def}}</p>
-      <p class="example">{{word.word_example}}</p>
-      <li class="date">{{ word.pub_date|date:'d/m/y' }}</li>
-      <ul class="tag-list">
+      <p class="Word-definition">{{word.word_def}}</p>
+      <p class="Word-example">{{word.word_example}}</p>
+      <li class="Word-date">{{ word.pub_date|date:'d/m/y' }}</li>
+      <ul class="Word-Tag-List">
         {% for tag in word.word_tag.all %}
-        <li class="tag"><a href="/tag/{{tag}}"> #{{ tag.tag_name }} </a></li>
+        <li class="Word-Tag"><a href="/tag/{{tag}}"> #{{ tag.tag_name }} </a></li>
         {% endfor %}
       </ul>
       <button class="upvotes" onclick="vote('{{ word.pk }}', 'up', this);">{{word.num_vote_up}}</button>

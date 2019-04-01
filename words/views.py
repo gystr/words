@@ -19,8 +19,8 @@ def index(request):
          search_query = request.POST.get('query', None) # Get query from form
          return HttpResponseRedirect('/words/'+ str(search_query)) # Return redirect to .detail
     else: # Else display regular index page
-        pop_tags = Tag.objects.all()[:32]
-        other_words = Word.objects.order_by('-num_vote_up')[:9]
+        pop_tags = Tag.objects.all()[:34]
+        other_words = Word.objects.order_by('-num_vote_up')[:12]
         return render(request, 'words/index.html',{'other_words' : other_words,'pop_tags' : pop_tags})
 
 

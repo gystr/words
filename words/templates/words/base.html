@@ -9,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'words/style.css' %}">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-  <link rel="shortcut icon" type="image/png" href="{% static 'words/logo.png' %}"/>
+  <link rel="shortcut icon" type="image/png" href="{% static 'words/logo.svg' %}"/>
   <script
   src="http://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
@@ -23,11 +23,21 @@
 </head>
 
 <body style="direction: rtl;">
-
-  <header class="header">
+  <div class="container">
+  <nav class="upper-navbar">
     <div class="logo-container">
-      <a href="/words/"><img id="logo" src="{% static 'words/logo.png' %}" alt="logo"></a>
+      <a href="/words/"><img id="logo" src="{% static 'words/logo.svg' %}" alt="logo"></a>
     </div>
+    <div class="user-area">
+      {% if user.is_authenticated %}
+      <a href="/users/logout/"><p>{{user.username}} שלום</p></a>
+      {% else %}
+      <a href="/users/login/"><p>שלום אורח</p></a>
+      {% endif %}
+      <a href="#"><i class="fas fa-users" id="users-icon"></i></a>
+    </div>
+  </nav>
+  <header>
     <form action="/words/" method="post">
       {% csrf_token %}
       <input class="mainForm" name="query" type="text" name="your_name" placeholder="חפש בסלנגז...">
@@ -40,26 +50,27 @@
         <li><a href="/tagList/">רשימת טאגים</a></li>
         <li><a href="/add/">הוסף הגדרה</a></li>
         <li><a href="/random/">מילה רנדומלית</a></li>
+        <li><a href="/about/">אודות</a></li>
       </ul>
     </nav>
   </header>
-
+  <div class="main">
   {% block content %} {% endblock %}
-
-
+  </div>
+  <div class="footer-area">
   <footer>
     <ul>
       <li><a href="/contact/">צרו קשר</a></li>
       <li><a href="/about/">אודות</a></li>
-      {% if user.is_authenticated %}
-      <li><a href="/users/logout/">התנתק</a></li>
-      {% else %}
-      <li><a href="/users/signup/">הירשם</a></li>
-      <li><a href="/users/login/">התחבר</a></li>
-      {% endif %}
     </ul>
-
   </footer>
+  <div class="underfooter">
+    <p>
+    כל הזכויות שמורות לאתר סלנגז 2019.
+    </p>
+  </div>
+  </div>
+  </div>
   <script src="{% static 'words/js/main.js' %}"></script>
 </body>
 
