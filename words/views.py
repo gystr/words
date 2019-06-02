@@ -11,7 +11,7 @@ from django.core.mail import send_mail, BadHeaderError
 from django.core.paginator import Paginator
 import random
 import json
-
+from .misc import normalized_word
 
 
 def index(request):
@@ -32,7 +32,8 @@ def index(request):
 
 def detail(request,word_name):
     try: #Try to find the word that was provided in the URl
-        words = Word.objects.filter(word_name=word_name).order_by('-num_vote_up')
+        clean_word = normalized_word(word_name)
+        words = Word.objects.filter(filtered_word=clean_word).order_by('-num_vote_up')
         if not words: #if the word_set in None redirect to add_word
             return HttpResponseRedirect('/words/add/'+ str(word_name))
         else:
@@ -68,12 +69,13 @@ def add_word(request,word_name="מלא את הטופס:"):
             exmp = form.cleaned_data['word_example']
             tags = form.cleaned_data['word_tags']
             cur_user = request.user
-            w = Word(author=cur_user,word_name=name,word_def=defi,word_example=exmp,pub_date=timezone.now())
+            clean_word = normalized_word(name)
+            w = Word(author=cur_user,word_name=name,filtered_word=clean_word,word_def=defi,word_example=exmp,pub_date=timezone.now())
             w.save() # save word
             cur_user.profile.published_words.add(w) # add word to the user's published words
             w.save() # save again for some reason
             tag_list = str(tags).split(",") # get tags from form
-            if not tag_list: # if tag list is empty pass NOT WORKING!!!
+            if str(tags) == "": # if tag list is empty pass NOT WORKING!!!
                 pass
             else:
                 for str_t in tag_list:

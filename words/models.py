@@ -23,6 +23,7 @@ class Tag(models.Model):
 class Word(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     word_name = models.CharField(max_length=144)
+    filtered_word = models.CharField(max_length=144)
     word_def = models.CharField(max_length=200)
     word_example = models.CharField(max_length=200,default=None)
     pub_date = models.DateTimeField('date published')

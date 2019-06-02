@@ -11,6 +11,7 @@ urlpatterns = [
     path('add/', views.add_word, name="words-add_word_details"),
     path('about/',views.about,name="about-page"), #about page
     path('contact/',views.contact,name="contact"), #contact page
+    path('tag/',views.all_tags,name="all-tags-page"), #Case for empty tag entering
     path('tag/<str:str_Tag>',views.tag_page,name="tag-detail-page"), #Tag page for words of a certain tag
     path('tagList/', views.all_tags, name="all-tags-page"), #page where all tags are displayed
     path('words/votes/<str:slug>/<str:direction>/',views.vote, name="vote"), # This view Manages votes

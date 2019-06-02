@@ -350,6 +350,10 @@ text-decoration: underline;
       margin: auto;
     }
 
+    .user-area > a > p {
+      display: none;
+    }
+
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -359,6 +363,7 @@ text-decoration: underline;
     grid-template-columns: 1fr 1fr;
     margin: auto;
   }
+
 
 
 /* Medium devices (landscape tablets, 768px and up) */

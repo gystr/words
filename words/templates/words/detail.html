@@ -18,6 +18,7 @@
       </ul>
       <button class="upvotes" onclick="vote('{{ word.pk }}', 'up', this);">{{word.num_vote_up}}</button>
       <button class="downvotes" onclick="vote('{{ word.pk }}', 'down', this);">{{word.num_vote_down}}</button>
+      <p>נוסף על ידי: <br>{{word.author}}</p>
     </div>
     {% endfor %}
   </div>
