@@ -36,7 +36,34 @@ body {
  width: 100%;
 }
 
-
+#login-div {
+background: olive;
+display: inline-block;
+ margin: 20px;
+ padding: 20px;
+  border-radius: 3px;
+}
+#login-div input {
+  border-radius: 6px;
+  font-family: 'Varela Round';
+  font-size: 1.2em;
+}
+#login-div button {
+  background: #087aab;
+  width: 80%;
+  height: 4%;
+  font-family: 'Varela Round';
+  font-size: 1.2em;
+  font-weight: bold;
+  min-height: 30px;
+}
+#login-div a h3{
+  color: whitesmoke;
+}
+#login-div a h3:hover{
+  color: purple;
+  text-decoration: underline;
+}
 
 /* HEADER/UPPER AREA */
 .upper-navbar {
@@ -306,6 +333,8 @@ text-decoration: underline;
   display: flex;
   justify-content:center;
 }
+
+
 
 /* MEDIA QUERY FOR SMALL SCREENS */
 

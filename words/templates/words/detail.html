@@ -16,8 +16,8 @@
         <li class="Word-Tag"><a href="/tag/{{tag}}"> #{{ tag.tag_name }} </a></li>
         {% endfor %}
       </ul>
-      <button class="upvotes" onclick="vote('{{ word.pk }}', 'up', this);">{{word.num_vote_up}}</button>
-      <button class="downvotes" onclick="vote('{{ word.pk }}', 'down', this);">{{word.num_vote_down}}</button>
+      <button class="upvotes" onclick="vote('{{ word.pk }}', 'up', this);"><i class="fas fa-thumbs-up"></i></button>
+      <button class="downvotes" onclick="vote('{{ word.pk }}', 'down', this);"><i class="fas fa-thumbs-down"></i></button>
       <p>נוסף על ידי: <br>{{word.author}}</p>
     </div>
     {% endfor %}

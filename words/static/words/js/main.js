@@ -69,7 +69,8 @@ function vote(slug, direction,element){
               $(element).text(data.votes);
         }
         else {
-            console.log("no vote");
+            alert(data.message);
+            $(element).innerText = "fuck";
               }
         },
         error: function() {
@@ -79,3 +80,17 @@ function vote(slug, direction,element){
     });
 
 };
+
+function myScript() {
+  var el = document.getElementById('username').firstElementChild;
+  el.innerText = 'שם משתמש:';
+  try {
+    var el = document.getElementById('password').firstElementChild;
+    el.innerText = 'סיסמא:';
+  } finally {
+    var el = document.getElementById('password1').firstElementChild;
+    el.innerText = 'סיסמא:';
+    var el = document.getElementById('password2').firstElementChild;
+    el.innerText = 'סיסמא חוזרת:';
+  }
+}

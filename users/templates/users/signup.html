@@ -4,11 +4,13 @@
 {% if user.is_authenticated %}
 <h3> You are already logged in as {{user}}</h3>
 {% else %}
-  <h2>Sign up</h2>
+<div  style="text-align:center; ">
+  <div id="login-div">
+  <h2>הרשמה לאתר</h2>
   <form method="post">
     {% csrf_token %}
       {% for field in form %}
-      <p>
+      <p id="{{field.name}}">
         {{ field.label_tag }}<br>
         {{ field }}
         {% if field.help_text %}
@@ -21,5 +23,7 @@
       {% endfor %}
     <button type="submit">Sign up</button>
   </form>
+</div>
+</div>
   {% endif %}
 {% endblock %}

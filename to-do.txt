@@ -1,4 +1,4 @@
 V--- make sure empty tags don't register as tags...----V
 2. make user profile signup/login/logout look decent and make sure they actually work
-3. make sure voting works because i can't remember and make site send proper response if a person can't vote.....
-4. decide what's up with nikkud.. fucking jesus...
+V---3. make sure voting works because i can't remember and make site send proper response if a person can't vote.....--V
+V---4. decide what's up with nikkud.. fucking jesus... ---V

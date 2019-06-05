@@ -1,11 +1,14 @@
 {% extends "words/base.html" %}
 
+
 {% block content %}
-  <h2>Log in</h2>
-  <form method="post">
+<div  style="text-align:center; ">
+  <div id="login-div">
+  <h2>כניסה לחשבונך</h2>
+  <form method="post" >
     {% csrf_token %}
       {% for field in form %}
-      <p>
+      <p id="{{field.name}}">
         {{ field.label_tag }}<br>
         {{ field }}
         {% if field.help_text %}
@@ -16,6 +19,10 @@
         {% endfor %}
       </p>
       {% endfor %}
-    <button type="submit">Login</button>
+    <button type="submit">התחבר!</button>
   </form>
+
+  <a href="{% url 'signup' %}"> <h3>אין לך חשבון? הירשם!</h3></a>
+  </div>
+  </div>
 {% endblock %}

@@ -1,6 +1,8 @@
 {% extends "words/base.html" %}
 
 {% block content %}
-  <h3>You have been logged out!</h3>
-  <h2><a href="{% url 'login' %}">Log in again?</a></h2>
+<div style="text-align:center;">
+  <h3>התנתקת מחשבונך</h3>
+  <h2><a href="{% url 'login' %}">התחבר שוב?</a></h2>
+  </div>
 {% endblock %}

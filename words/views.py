@@ -153,6 +153,6 @@ def vote(request,slug,direction):
     if request.method == 'POST' and not request.user.is_authenticated:
         result = {
             'success': False,
-            'message' : "You have to be a signed user to vote!"
+            'message' : "עליך להיות משמתמש רשום בכדי להצביע!"
                 }
     return HttpResponse(json.dumps(result), content_type="application/json")

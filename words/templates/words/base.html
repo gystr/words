@@ -5,6 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="keywords" content="dictionary,hebrew,slangs,סלנג,מילון,מושגים,עברית">
+  <meta name="description" content="מילון מילות סלנג בשפה העברית">
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'words/style.css' %}">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
@@ -22,7 +24,7 @@
   {% endif %}
 </head>
 
-<body style="direction: rtl;">
+<body style="direction: rtl;" onload="myScript()">
   <div class="container">
   <nav class="upper-navbar">
     <div class="logo-container">
@@ -73,5 +75,27 @@
   </div>
   <script src="{% static 'words/js/main.js' %}"></script>
 </body>
+<script>
 
+
+
+
+function myScript() {
+  var el = document.getElementById('username').firstElementChild;
+  el.innerText = 'שם משתמש:';
+  try {
+    var el = document.getElementById('password').firstElementChild;
+    el.innerText = 'סיסמא:';
+  } finally {
+    var el = document.getElementById('first_name').firstElementChild;
+    el.innerText = 'שם פרטי:';
+    var el = document.getElementById('last_name').firstElementChild;
+    el.innerText = 'שם משפחה:';
+    var el = document.getElementById('password1').firstElementChild;
+    el.innerText = 'סיסמא:';
+    var el = document.getElementById('password2').firstElementChild;
+    el.innerText = 'סיסמא חוזרת:';
+}
+}
+</script>
 </html>
