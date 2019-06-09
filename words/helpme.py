@@ -16,7 +16,7 @@ except:
     Default_User = User()
     Default_User.save()
 
-def add_words(db_path = r'D:\programming\testingjs\fuckingKillHebrew\words.csv'):
+def add_words(db_path = r'output.csv'):
     with open(db_path ,encoding="utf-8") as csvfile:
         reader = csv.DictReader(csvfile)
 
