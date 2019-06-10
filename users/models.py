@@ -6,7 +6,8 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    published_words = models.ManyToManyField(Word)
+    published_words = models.ManyToManyField(Word, related_name='user_published_words')
+    voted_words = models.ManyToManyField(Word, related_name='user_voted_words')
 
 
     @receiver(post_save, sender=User)
@@ -21,6 +22,16 @@ class Profile(models.Model):
     def __str__(self):
         return f"username:{self.user.username}  pk:{str(self.user.pk)}"
 
+
+    def can_vote(self,word):
+        """
+        this function is called in words.views.vote() and checks if the user already
+        voted on this word
+        """
+        if word in self.voted_words.all():
+            return False
+        else:
+            return True
 
     def can_publish(self):
         """

@@ -38,12 +38,12 @@ class Word(models.Model):
     def __str__(self):
         return "{} - {}".format(self.word_name,self.word_def)
 
-    def voted_by_this_user(self,user_pk):
-        if self.upvoted_by == "":
-            return False
-        x = self.upvoted_by.split(",")
-        x_set = set(x)
-        if str(user_pk) in x_set:
-            return True
-        else:
-            return False
+    # def voted_by_this_user(self,user_pk):
+    #     if self.upvoted_by == "":
+    #         return False
+    #     x = self.upvoted_by.split(",")
+    #     x_set = set(x)
+    #     if str(user_pk) in x_set:
+    #         return True
+    #     else:
+    #         return False

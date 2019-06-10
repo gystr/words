@@ -9,6 +9,7 @@ from django.contrib import messages
 from django.db.models import Max
 from django.core.mail import send_mail, BadHeaderError
 from django.core.paginator import Paginator
+from users.models import Profile
 import random
 import json
 from .misc import normalized_word
@@ -137,14 +138,19 @@ def vote(request,slug,direction):
     result = None
     if request.method == 'POST' and request.user.is_authenticated:
         w = Word.objects.get(pk=slug)
-        user_id = request.user.pk
-
-        if w.voted_by_this_user(user_id) == False:
+        user_profile = Profile.objects.get(user=request.user)
+        print(user_profile)
+        if user_profile.can_vote(w):
             if direction == "upvote":
                 w.num_vote_up += 1
+                print("upvoted")
             else:
                 w.num_vote_down += 1
-            w.upvoted_by += str(f"{user_id},")
+
+            user_profile.voted_words.add(w)
+            print("word added!")
+            user_profile.save()
+            print("word saved!")
             w.save()
             result = {
                 'success': True
